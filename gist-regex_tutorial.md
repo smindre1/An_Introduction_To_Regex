@@ -6,9 +6,19 @@ Regex, short for 'regular expression', is a syntax that allows you to match stri
 
 I will be explaining Regex used in a Javascript enviornment with all declarations of variables and commands being in JS, however, the Regex notation itself is a universal language that can be applied to many different coding languages. By the end of this article, I hope you will have enough information to setup Regex Syntax in your own coding programs.
 
-## Regex Components
+## Table of Contents
 
-- List all the components here
+- [Getting Started](#getting-started)
+- [Anchors](#anchors)
+- [Quantifiers](#quantifiers)
+- [Grouping Constructs](#grouping-constructs)
+- [Bracket Expressions](#bracket-expressions)
+- [Character Classes](#character-classes)
+- [The OR Operator](#the-or-operator)
+- [Flags](#flags)
+- [Character Escapes](#character-escapes)
+- [Author](#author)
+- [Additional Resources](#additional-resources)
 
 ## Getting Started
 
@@ -63,7 +73,7 @@ console.log(result);
 
 `**These Regex searches currently only find the first pattern that matches in the string. That's fine right now since we are only testing if it exists within the string. However, when we start trying to record every matching pattern in the string, that is when we will need to start including quantifiers and flags.`
 
-### Quantifiers
+## Quantifiers
 
 Quantifiers indicate how many times a character, group, or pattern should be matched in a string. However, unless it is formatted to refer to a group or pattern, a quantifier by default will refer to the first character that preceeds it. So, if you were to setup a regex like `/ghost{3,}/` then the quantifier will only apply to the 't' in 'ghost'. This particular example will look for the first pattern in a string that has the string 'ghos' with three or more t's following it.
 
@@ -80,7 +90,7 @@ There are several types of quantifiers in Regex, which are:
 - `{m}` - Matches exactly m occurences.
 - `{m,}` - Matches m or more occurences.
 
-### Grouping Constructs
+## Grouping Constructs
 
 As a regular expression (Regex) becomes more intricate, you may often find yourself needing different parts of a string to fit specific criteria. For example, an email is something you would break up into the username like portion, the @ symbol, and the type of email such as gmail.com, yahoo.com, etc... Defining these section is where Grouping Constructs come into play. To define a section in Regex you need to utilize parentheses `()`, with each section within a parentheses being known as a `subexpression`.
 
@@ -88,7 +98,7 @@ As a regular expression (Regex) becomes more intricate, you may often find yours
 
 **Subexpressions**: have two primary states, a `capturing group` state and a `non-capturing group` state. A **capturing group** has something called a backreference immediately following it. A backreference is a backslash followed by a number, like so: '\1'. A backreference exists so that when the capturing group records a matched character sequence it can be reused by utilizing the backreference. The number used for the backreference can start at 1 and be any integer as high as the number of subexpressions that are present. Now, a **non-capturing group** is a subexpression with a question mark and colon placed before the pattern, like so: `(?:pattern)`.
 
-### Bracket Expressions
+## Bracket Expressions
 
 Anything within brackets represents a range of characters that we are attempting to match. If we for example had a bracket expression like `[abc]`, then we would be searching for a string that begins with either 'a', 'b, or 'c'. We can also set the bracket expression as `[a-c]` for the exact same result. Now as a reminder, Regex is very strict with lowercase and capitalize letters and in order to include them you need to do something like `[a-zA-Z]` or `[a-cB-Q]`.
 
@@ -97,7 +107,7 @@ Anything within brackets represents a range of characters that we are attempting
 
 -`**The order within a bracket expression does not matter.` -`**A bracket expression can be turned into a negative character group by adding a carrot (^) first within it. (ex: [^aeiou] will exclude the listed characters).`
 
-### Character Classes
+## Character Classes
 
 A `character class` in a Regex defines a set of characters, any one of which can occur in an input string to fulfill a match. The positive and negative bracket expressions are also considered character classes.
 
@@ -112,11 +122,11 @@ Some common character classes to know are:
 
 More character classes can be found here: [**Other Character Classes**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes)
 
-### The OR Operator
+## The OR Operator
 
 Within bracket expressions we are given options of characcters to match, such as how [a-z0-9] asks for the character to match either a lowercase letter from a to z **OR** a digit from zero to nine. The `OR Operator` is taking this concept and applying it in places like subexpressions using the '`|`' symbol. An example of this would be **(cat|dog)**, here we are looking for a pattern of 'cat' **OR** 'dog' to be present within a text. There is also no real limit to adding the OR Operator so you can cutomize many optional patterns.
 
-### Flags
+## Flags
 
 **Flags** are like a set of instructions that change the behavior of a regular expression (Regex).
 
@@ -149,13 +159,13 @@ regexp = new RegExp("pattern", "flags");
 
 ```
 
-### Character Escapes
+## Character Escapes
 
 In a regular expression (Regex), a string will begin and end with a forward slash (`/`). Everything within it will be either a part of the pattern or a search filter such as the quantifiers, bracket expressions, character classes, etc. However, what if you want to include one of the special characters used in the search filter as a part of the pattern string? This is where the character escape comes into play. A `backslash` (`\`), will treat the following character as a part of the string before continuing on with the Regex as normal.
 
 - `**As a side note, any special characters, including the backslash, within a bracket expression will automatically lose their special significance and will be treated as a character to match within the text.`
 
-### Author
+## Author
 
 I, `Shane Mindreau`, wrote this article as a means to both learn and teach regular expressions (Regex). It is a very helpful tool to utilize when coding and I hope this article has helped you learn enough to use it within your own projects.
 
@@ -165,7 +175,7 @@ To see more of my work and projects visit my `GitHub Repository` or my `personal
 
 [Shane Mindreau's Portfolio Page](https://smindre1.github.io/shane-mindreau-portfolio/)
 
-### Additional Resources
+## Additional Resources
 
 [What is Regex?](https://www.variables.sh/what-is-regex/#:~:text=Regexes%20are%20composed%20of%20several,classes%2C%20quantifiers%2C%20and%20alternation)
 
