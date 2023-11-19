@@ -12,9 +12,9 @@ I will be explaining Regex used in a Javascript enviornment. Any and all example
 
 ## Getting Started
 
-This is an example of using the Regex constructor function. This should only be used when you know that the pattern will be changing or that the pattern will be based on user input.
+This is an example of using the `Regex constructor function`. This should only be used when you know that the pattern will be changing or that the pattern will be based on user input.
 
-```
+```c
 let pattern = new RegExp("hello");
 let input = "hello world";
 let result = pattern.test(input);   //This tests to see if the pattern exists within the input text
@@ -23,9 +23,9 @@ console.log(result);
 //Returns 'true' because the Regex pattern exists within the input.
 ```
 
-This is an example of literal notation (where instead of declaring something is a Regex expression, you use syntax notation to have javascript automatically perceive it as regex):
+This is an example of `literal notation` (where instead of declaring something is a Regex expression, you use syntax notation to have javascript automatically perceive it as regex):
 
-```
+```c
 let pattern = /hello/;
 let input = "hello world";
 let result = pattern.test(input);
@@ -41,7 +41,7 @@ Anchors have special meaning in regex (regular expressions). They do not match a
 - `^` - The carot anchor matches the begining of a text.
 - `$` - The dollar sign anchor matches the end of a text.
 
-```
+```c
 let string = 'Javascript';
 let pattern = /^J/;
 let result = pattern.test(string);
@@ -52,7 +52,7 @@ console.log(result);
 
 `**Regex is case sensitive, so if you are looking for a capital 'J', then it will not accept a lowercase 'j'.`
 
-```
+```c
 let string = 'Javascript';
 let pattern = /t$/;
 let result = pattern.test(string);
@@ -111,3 +111,37 @@ Some common character classes to know are:
 - `**Each of these classes can also perform the opposite where they exclude their specific characters from matching. All that's needed is to capitalize the class, so for example '\d' can be capitalized to '\D' and will match every character EXCEPT the digits 0-9.`
 
 More character classes can be found here: [**Other Character Classes**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes)
+
+### The OR Operator
+Within bracket expressions we are given options of characcters to match, such as how [a-z0-9] asks for the character to match either a lowercase letter from a to z **OR** a digit from zero to nine. The `OR Operator` is taking this concept and applying it in places like subexpressions using the '`|`' symbol. An example of this would be **(cat|dog)**, here we are looking for a pattern of 'cat' **OR** 'dog' to be present within a text. There is also no real limit to adding the OR Operator so you can cutomize many optional patterns.
+
+### Flags
+
+**Flags** are like a set of instructions that change the behavior of a regular expression (regex).
+
+Some flags are as follows:
+- `g` - **Global Search**: This makes it so that the regex will be tested against all possible matches in a string. Without this the regex will stop searching after finding it's first match, even if there are mnay more matches later in the string/text.
+- `i` - **Case Insensitive Search**: This makes it so that lowercase and uppercase should be treated the same when looking through the string/text for a pattern.
+- `m` - **Multi Line Search**: This eneables a multiline mode within regex, affecting the `^` and `$` anchors. In the multiline mode they match not only at the beginning and the end of the string, but also at start/end of line. An example can be seen below:
+```c
+let str = '1st place Winnie,
+2nd place Piglet,
+3rd place: Eeyore';
+
+console.log( str.match(/^\d/gm) ); 
+// This results in: 1, 2, 3
+```
+`**Flags will always be placed after the end slash of a regex literal notation and as the second argument within a regex constructor function`
+```c
+//Regex literal notation.
+
+regexp = /pattern/;   // no flags
+regexp = /pattern/gmi;   // with flags g,m and i
+
+//Regex constructor function.
+
+regexp = new RegExp("pattern", "flags");
+
+```
+
+### Character Escapes
