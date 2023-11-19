@@ -12,7 +12,7 @@ I will be explaining Regex used in a Javascript enviornment. Any and all example
 
 ## Getting Started
 
-This is an example of using Regex without utilizing it's literal notation.
+This is an example of using the Regex constructor function. This should only be used when you know that the pattern will be changing or that the pattern will be based on user input.
 
 ```
 let pattern = new RegExp("hello");
@@ -49,7 +49,7 @@ console.log(result);
 
 //Because the string starts with a 'J', the console logs 'true'
 ```
-
+`**Regex is case sensitive, so if you are looking for a capital 'J', then it will not accept a lowercase 'j'.`
 ```
 let string = 'Javascript';
 let pattern = /t$/;
@@ -74,7 +74,15 @@ There are several types of quantifiers in regex, which are:
 **`Plus Sign (+)`** - 1 or more occurrences.
 
 **`Curly Brackets ({m, n})`** - m to n occurrences.
+
 - `{m}` - Matches exactly m occurences.
 - `{m,}` - Matches m or more occurences.
 
 ### Grouping Constructs
+
+As a regular expression (regex) becomes more intricate, you may often find yourself needing different parts of a string to fit specific criteria. For example, an email is something you would break up into the username like portion, the @ symbol, and the type of email such as gmail.com, yahoo.com, etc... Defining these section is where Grouping Constructs come into play. To define a section in regex you need to utilize parentheses `()`, with each section within a parentheses being known as a `subexpression`.
+
+- `**Unlike bracket notation which will be mentioned later, subexpressions look for exactly what is in them.`
+
+**Subexpressions**: have two primary states, a `capturing group` state and a `non-capturing group` state. A **capturing group** has something called a backreference immediately following it. A backreference is a backslash followed by a number like so, '\1'. A backreference exists so that when the capturing group records a matched character sequence it can be reused by utilizing the backreference. The number used for the backreference can start at 1 and be any integer as high as the number of subexpressions that are present. Now, a **non-capturing group** is a subexpression with a question mark and colon placed before the pattern, like so: `(?:pattern)`.
+
