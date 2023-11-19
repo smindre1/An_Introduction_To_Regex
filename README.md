@@ -49,7 +49,9 @@ console.log(result);
 
 //Because the string starts with a 'J', the console logs 'true'
 ```
+
 `**Regex is case sensitive, so if you are looking for a capital 'J', then it will not accept a lowercase 'j'.`
+
 ```
 let string = 'Javascript';
 let pattern = /t$/;
@@ -84,5 +86,28 @@ As a regular expression (regex) becomes more intricate, you may often find yours
 
 - `**Unlike bracket notation which will be mentioned later, subexpressions look for exactly what is in them.`
 
-**Subexpressions**: have two primary states, a `capturing group` state and a `non-capturing group` state. A **capturing group** has something called a backreference immediately following it. A backreference is a backslash followed by a number like so, '\1'. A backreference exists so that when the capturing group records a matched character sequence it can be reused by utilizing the backreference. The number used for the backreference can start at 1 and be any integer as high as the number of subexpressions that are present. Now, a **non-capturing group** is a subexpression with a question mark and colon placed before the pattern, like so: `(?:pattern)`.
+**Subexpressions**: have two primary states, a `capturing group` state and a `non-capturing group` state. A **capturing group** has something called a backreference immediately following it. A backreference is a backslash followed by a number, like so: '\1'. A backreference exists so that when the capturing group records a matched character sequence it can be reused by utilizing the backreference. The number used for the backreference can start at 1 and be any integer as high as the number of subexpressions that are present. Now, a **non-capturing group** is a subexpression with a question mark and colon placed before the pattern, like so: `(?:pattern)`.
 
+### Bracket Expressions
+
+Anything within brackets represents a range of characters that we are attempting to match. If we for example had a bracket expression like `[abc]`, then we would be searching for a string that begins with either 'a', 'b, or 'c'. We can also set the bracket expression as `[a-c]` for the exact same result. Now as a reminder, regex is very strict with lowercase and capitalize letters and in order to include them you need to do something like `[a-zA-Z]` or `[a-cB-Q]`.
+
+- `[0-9]` will match a string that contains the numbers zero through nine.
+- `[-_]` The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. With this bracket expression we are saying we need a string that includes either '-' or '\_'. It's important to note that the hyphen here is not the same hyphen that we used in our alphanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric character ranges within the brackets.
+
+-`**The order within a bracket expression does not matter.` -`**A bracket expression can be turned into a negative character group by adding a carrot (^) first within it. (ex: [^aeiou] will exclude the listed characters).`
+
+### Character Classes
+
+A `character class` in a regex defines a set of characters, any one of which can occur in an input string to fulfill a match. The positive and negative bracket expressions are also considered character classes.
+
+Some common character classes to know are:
+
+- `.` - This will match any character except the new line character (`\n`).
+- `\d` - This will matche any Arabic numeral digit. This class is equivalent to the bracket expression `[0-9]`.
+- `\w` - This matches any alphanumeric character from the basic Latin alphabet, including the underscore `_`. This class is equivalent to the bracket expression `[A-Za-z0-9_]`.
+- `\s` - This matches a single whitespace character, including tabs and line breaks.
+
+- `**Each of these classes can also perform the opposite where they exclude their specific characters from matching. All that's needed is to capitalize the class, so for example '\d' can be capitalized to '\D' and will match every character EXCEPT the digits 0-9.`
+
+More character classes can be found here: [**Other Character Classes**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Character_classes)
