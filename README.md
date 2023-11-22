@@ -17,6 +17,7 @@ I will be explaining Regex used in a Javascript enviornment with all declaration
 - [The OR Operator](#the-or-operator)
 - [Flags](#flags)
 - [Character Escapes](#character-escapes)
+- [Destructuring a Regex](#destructuring-a-regex)
 - [Author](#author)
 - [Additional Resources](#additional-resources)
 
@@ -105,7 +106,8 @@ Anything within brackets represents a range of characters that we are attempting
 - `[0-9]` will match a string that contains the numbers zero through nine.
 - `[-_]` The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. With this bracket expression we are saying we need a string that includes either '-' or '\_'. It's important to note that the hyphen here is not the same hyphen that we used in our alphanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric character ranges within the brackets.
 
--`**The order within a bracket expression does not matter.` -`**A bracket expression can be turned into a negative character group by adding a carrot (^) first within it. (ex: [^aeiou] will exclude the listed characters).`
+- `**The order within a bracket expression does not matter.`
+- `**A bracket expression can be turned into a negative character group by adding a carrot (^) first within it. (ex: [^aeiou] will exclude the listed characters).`
 
 ## Character Classes
 
@@ -163,7 +165,95 @@ regexp = new RegExp("pattern", "flags");
 
 In a regular expression (Regex), a string will begin and end with a forward slash (`/`). Everything within it will be either a part of the pattern or a search filter such as the quantifiers, bracket expressions, character classes, etc. However, what if you want to include one of the special characters used in the search filter as a part of the pattern string? This is where the character escape comes into play. A `backslash` (`\`), will treat the following character as a part of the string before continuing on with the Regex as normal.
 
-- `**As a side note, any special characters, including the backslash, within a bracket expression will automatically lose their special significance and will be treated as a character to match within the text.`
+- `**As a side note, any special characters, including the backslash, within a bracket expression will automatically lose their special significance and will be treated as a character to match within the text if preceded by a backslash. The exceptions for this are character classes that require a backslash to operate.`
+
+```c
+//This will not try and match a backslash (\)
+let pattern = /[\]/
+//This will try and match a backslash (\) because the first backslash is turning the second backslash into a character
+let pattern = /[\\]/
+
+//This is a character class that already posseses a backslash (\) so it operates as it's intended character class
+let pattern = /[\d]/
+
+```
+
+## Destructuring a Regex
+
+Now that we have gone through all the parts of a regular expression (Regex), let's practice by destructuring one.
+
+This here is a Regex used for matching an Email:
+`/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
+
+```c
+//First, this is a literal notation Regex. So, working outwards in we would check for flags, which are not present
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ // <-- A flag should be after the ending forwardslash
+
+//Next, We can take off the start and end forward slashes that denote this as a Regex string.
+^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$
+
+//To destructure it further lets break it into sections to see what and how it is matching strings.
+^([a-z0-9_\.-]+)
+@
+([\da-z\.-]+)
+\.
+([a-z\.]{2,6})$
+```
+
+`^([a-z0-9_\.-]+)`
+
+```c
+//Moving outward in, we come across the carrot symbol (^) just outside a grouping construct of a subexpression.
+//This indicates that the subexpression is the search filter for the first character of the pattern.
+([a-z0-9_\.-]+)
+
+//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurance.
+//More specifically, since we had a carrot symbol it means this filter will occur for each character until we run into the next part of the Regex (which is the @ symbol).
+[a-z0-9_\.-]
+
+//Lastly, we have a bracket expression which defines what the specific characters the filter is looking to match.
+//This specific bracket expression is looking for any lowercase letters from a to z, any digit from 0 to 9, an underscore, a period (which is utilizing a character escape), or a dash.
+```
+
+`@`
+
+```c
+//After the first part of the Regex, we move onto the next which is just a straightforward character
+@
+
+//This is saying that after the first grouping construct is fulfilled there must be an @ character.
+```
+
+`([\da-z\.-]+)`
+
+```c
+//The next portion of the regex is another grouping construct of a subexpression.
+//This indicates that the subexpression is the search filter for the first character of the pattern.
+([\da-z\.-]+)
+
+//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurance.
+[\da-z\.-]
+
+//Lastly, we have a bracket expression which defines what the specific characters the filter is looking to match.
+//This specific bracket expression is looking for any digit from 0 to 9 using the character class (\d), any lowercase letters from a to z, a period (which is utilizing a character escape), or a dash.
+```
+
+`\.`
+```c
+//The following portion is a filter searching for a period (.) character to match. Since a period is a character class it requiires a character escape (\) in order to lose it's propeties as a special character.
+\.
+```
+
+`([a-z\.]{2,6})$`
+```c
+//The last portion of this regex is signified by the dollar sign ($) that appears behind the group construct. It defines the end of the pattern/text.
+([a-z\.]{2,6})$
+
+//Within the group construct is the subexpression split in two parts, the first is a bracket expression. The bracket expression limits the the ending character(s) to be either lowercase letters from a to z or a period (which is utilizing a character escape).
+[a-z\.]
+
+//The second portion of this subexpression is the range of matches/occurances that the bracket expression can express.
+```
 
 ## Author
 
