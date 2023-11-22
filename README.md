@@ -4,7 +4,7 @@ Regex, short for 'regular expression', is a syntax that allows you to match stri
 
 ## Summary
 
-I will be explaining Regex used in a Javascript enviornment with all declarations of variables and commands being in JS, however, the Regex notation itself is a universal language that can be applied to many different coding languages. By the end of this article, I hope you will have enough information to setup Regex Syntax in your own coding programs.
+I will be explaining Regex used in a Javascript environment with all declarations of variables and commands being in JS, however, the Regex notation itself is a universal language that can be applied to many different coding languages. By the end of this article, I hope you will have enough information to set up Regex Syntax in your own coding programs.
 
 ## Table of Contents
 
@@ -49,7 +49,7 @@ console.log(result);
 
 Anchors have special meaning in Regex (regular expressions). They do not match any character. Instead, they match a position before or after a string, characters, or line:
 
-- `^` - The carot anchor matches the begining of a text.
+- `^` - The carrot anchor matches the beginning of a text.
 - `$` - The dollar sign anchor matches the end of a text.
 
 ```c
@@ -76,7 +76,7 @@ console.log(result);
 
 ## Quantifiers
 
-Quantifiers indicate how many times a character, group, or pattern should be matched in a string. However, unless it is formatted to refer to a group or pattern, a quantifier by default will refer to the first character that preceeds it. So, if you were to setup a regex like `/ghost{3,}/` then the quantifier will only apply to the 't' in 'ghost'. This particular example will look for the first pattern in a string that has the string 'ghos' with three or more t's following it.
+Quantifiers indicate how many times a character, group, or pattern should be matched in a string. However, unless it is formatted to refer to a group or pattern, a quantifier by default will refer to the first character that precedes it. So, if you were to set up a regex like `/ghost{3,}/` then the quantifier will only apply to the 't' in 'ghost'. This particular example will look for the first pattern in a string that has the string 'ghos' with three or more t's following it.
 
 There are several types of quantifiers in Regex, which are:
 
@@ -88,12 +88,12 @@ There are several types of quantifiers in Regex, which are:
 
 **`Curly Brackets ({m, n})`** - m to n occurrences.
 
-- `{m}` - Matches exactly m occurences.
-- `{m,}` - Matches m or more occurences.
+- `{m}` - Matches exactly m occurrences.
+- `{m,}` - Matches m or more occurrences.
 
 ## Grouping Constructs
 
-As a regular expression (Regex) becomes more intricate, you may often find yourself needing different parts of a string to fit specific criteria. For example, an email is something you would break up into the username like portion, the @ symbol, and the type of email such as gmail.com, yahoo.com, etc... Defining these section is where Grouping Constructs come into play. To define a section in Regex you need to utilize parentheses `()`, with each section within a parentheses being known as a `subexpression`.
+As a regular expression (Regex) becomes more intricate, you may often find yourself needing different parts of a string to fit specific criteria. For example, an email is something you would break up into the username like portion, the @ symbol, and the type of email such as gmail.com, yahoo.com, etc... Defining these sections is where Grouping Constructs come into play. To define a section in Regex you need to utilize parentheses `()`, with each section within a parentheses being known as a `subexpression`.
 
 - `**Unlike bracket notation which will be mentioned later, subexpressions look for exactly what is in them.`
 
@@ -101,7 +101,7 @@ As a regular expression (Regex) becomes more intricate, you may often find yours
 
 ## Bracket Expressions
 
-Anything within brackets represents a range of characters that we are attempting to match. If we for example had a bracket expression like `[abc]`, then we would be searching for a string that begins with either 'a', 'b, or 'c'. We can also set the bracket expression as `[a-c]` for the exact same result. Now as a reminder, Regex is very strict with lowercase and capitalize letters and in order to include them you need to do something like `[a-zA-Z]` or `[a-cB-Q]`.
+Anything within brackets represents a range of characters that we are attempting to match. If we for example had a bracket expression like `[abc]`, then we would be searching for a string that begins with either 'a', 'b, or 'c'. We can also set the bracket expression as `[a-c]` for the exact same result. Now as a reminder, Regex is very strict with lowercase and capitalized letters, thus, in order to include them you need to do something like `[a-zA-Z]` or `[a-cB-Q]`.
 
 - `[0-9]` will match a string that contains the numbers zero through nine.
 - `[-_]` The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. With this bracket expression we are saying we need a string that includes either '-' or '\_'. It's important to note that the hyphen here is not the same hyphen that we used in our alphanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric character ranges within the brackets.
@@ -116,7 +116,7 @@ A `character class` in a Regex defines a set of characters, any one of which can
 Some common character classes to know are:
 
 - `.` - This will match any character except the new line character (`\n`).
-- `\d` - This will matche any Arabic numeral digit. This class is equivalent to the bracket expression `[0-9]`.
+- `\d` - This will match any Arabic numeral digit. This class is equivalent to the bracket expression `[0-9]`.
 - `\w` - This matches any alphanumeric character from the basic Latin alphabet, including the underscore `_`. This class is equivalent to the bracket expression `[A-Za-z0-9_]`.
 - `\s` - This matches a single whitespace character, including tabs and line breaks.
 
@@ -126,7 +126,7 @@ More character classes can be found here: [**Other Character Classes**](https://
 
 ## The OR Operator
 
-Within bracket expressions we are given options of characcters to match, such as how [a-z0-9] asks for the character to match either a lowercase letter from a to z **OR** a digit from zero to nine. The `OR Operator` is taking this concept and applying it in places like subexpressions using the '`|`' symbol. An example of this would be **(cat|dog)**, here we are looking for a pattern of 'cat' **OR** 'dog' to be present within a text. There is also no real limit to adding the OR Operator so you can cutomize many optional patterns.
+Within bracket expressions we are given options of characters to match, such as how [a-z0-9] asks for the character to match either a lowercase letter from a to z **OR** a digit from zero to nine. The `OR Operator` is taking this concept and applying it in places like subexpressions using the '`|`' symbol. An example of this would be **(cat|dog)**, here we are looking for a pattern of 'cat' **OR** 'dog' to be present within a text. There is also no real limit to adding the OR Operator so you can customize many optional patterns.
 
 ## Flags
 
@@ -134,9 +134,9 @@ Within bracket expressions we are given options of characcters to match, such as
 
 Some flags are as follows:
 
-- `g` - **Global Search**: This makes it so that the Regex will be tested against all possible matches in a string. Without this the Regex will stop searching after finding it's first match, even if there are mnay more matches later in the string/text.
+- `g` - **Global Search**: This makes it so that the Regex will be tested against all possible matches in a string. Without this the Regex will stop searching after finding its first match, even if there are many more matches later in the string/text.
 - `i` - **Case Insensitive Search**: This makes it so that lowercase and uppercase should be treated the same when looking through the string/text for a pattern.
-- `m` - **Multi Line Search**: This eneables a multiline mode within Regex, affecting the `^` and `$` anchors. In the multiline mode they match not only at the beginning and the end of the string, but also at start/end of line. An example can be seen below:
+- `m` - **Multi Line Search**: This enables a multiline mode within Regex, affecting the `^` and `$` anchors. In the multiline mode they match not only at the beginning and the end of the string, but also at start/end of line. An example can be seen below:
 
 ```c
 let str = '1st place Winnie,
@@ -173,7 +173,7 @@ let pattern = /[\]/
 //This will try and match a backslash (\) because the first backslash is turning the second backslash into a character
 let pattern = /[\\]/
 
-//This is a character class that already posseses a backslash (\) so it operates as it's intended character class
+//This is a character class that already possesses a backslash (\) so it operates as it's intended character class
 let pattern = /[\d]/
 
 ```
@@ -187,12 +187,12 @@ This here is a Regex used for matching an Email:
 
 ```c
 //First, this is a literal notation Regex. So, working outwards in we would check for flags, which are not present
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ // <-- A flag should be after the ending forwardslash
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ // <-- A flag should be after the ending forward slash
 
 //Next, We can take off the start and end forward slashes that denote this as a Regex string.
 ^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$
 
-//To destructure it further lets break it into sections to see what and how it is matching strings.
+//To destructure it further let's break it into sections to see what and how it is matching strings.
 ^([a-z0-9_\.-]+)
 @
 ([\da-z\.-]+)
@@ -207,7 +207,7 @@ This here is a Regex used for matching an Email:
 //This indicates that the subexpression is the search filter for the first character of the pattern.
 ([a-z0-9_\.-]+)
 
-//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurance.
+//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurrence.
 //More specifically, since we had a carrot symbol it means this filter will occur for each character until we run into the next part of the Regex (which is the @ symbol).
 [a-z0-9_\.-]
 
@@ -231,7 +231,7 @@ This here is a Regex used for matching an Email:
 //This indicates that the subexpression is the search filter for the first character of the pattern.
 ([\da-z\.-]+)
 
-//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurance.
+//Once we move further in however we come across a plus sign (+) indicating that this subexpression can have more than one occurrence.
 [\da-z\.-]
 
 //Lastly, we have a bracket expression which defines what the specific characters the filter is looking to match.
@@ -239,20 +239,22 @@ This here is a Regex used for matching an Email:
 ```
 
 `\.`
+
 ```c
-//The following portion is a filter searching for a period (.) character to match. Since a period is a character class it requiires a character escape (\) in order to lose it's propeties as a special character.
+//The following portion is a filter searching for a period (.) character to match. Since a period is a character class it requires a character escape (\) in order to lose its properties as a special character.
 \.
 ```
 
 `([a-z\.]{2,6})$`
+
 ```c
 //The last portion of this regex is signified by the dollar sign ($) that appears behind the group construct. It defines the end of the pattern/text.
 ([a-z\.]{2,6})$
 
-//Within the group construct is the subexpression split in two parts, the first is a bracket expression. The bracket expression limits the the ending character(s) to be either lowercase letters from a to z or a period (which is utilizing a character escape).
+//Within the group construct is the subexpression split in two parts, the first is a bracket expression. The bracket expression limits the ending character(s) to be either lowercase letters from a to z or a period (which is utilizing a character escape).
 [a-z\.]
 
-//The second portion of this subexpression is the range of matches/occurances that the bracket expression can express.
+//The second portion of this subexpression is the range of matches/occurrences that the bracket expression can express.
 ```
 
 ## Author
